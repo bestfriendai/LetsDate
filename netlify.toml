@@ -20,7 +20,7 @@
     Access-Control-Allow-Origin = "*"
     Access-Control-Allow-Methods = "GET, POST, PUT, DELETE, OPTIONS"
     Access-Control-Allow-Headers = "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self' https://backend-i7yqbirxs-bestfriendais-projects.vercel.app; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self';"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self' https://backend-i7yqbirxs-bestfriendais-projects.vercel.app; img-src 'self' data: blob: https://*.tile.openstreetmap.org https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline'; font-src 'self';"
     X-Content-Type-Options = "nosniff"
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
