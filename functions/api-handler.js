@@ -1,4 +1,12 @@
 exports.handler = async (event, context) => {
+  // Log incoming request
+  console.log('Incoming request:', {
+    method: event.httpMethod,
+    path: event.path,
+    headers: event.headers,
+    body: event.body
+  });
+
   // Set CORS headers for all responses
   const headers = {
     "Access-Control-Allow-Origin": "*",
@@ -8,6 +16,7 @@ exports.handler = async (event, context) => {
 
   // Handle OPTIONS request
   if (event.httpMethod === "OPTIONS") {
+    console.log('Handling OPTIONS request');
     return {
       statusCode: 204,
       headers,
@@ -18,6 +27,7 @@ exports.handler = async (event, context) => {
   // Handle POST request
   if (event.httpMethod === "POST") {
     try {
+      console.log('Handling POST request');
       // Process the POST request here
       // For example:
       // const body = JSON.parse(event.body);
@@ -29,6 +39,7 @@ exports.handler = async (event, context) => {
         body: JSON.stringify({ message: "POST request processed successfully" })
       };
     } catch (error) {
+      console.error('Error processing POST request:', error);
       return {
         statusCode: 500,
         headers,
@@ -38,6 +49,7 @@ exports.handler = async (event, context) => {
   }
 
   // Handle other HTTP methods
+  console.log('Handling unsupported method:', event.httpMethod);
   return {
     statusCode: 405,
     headers,
