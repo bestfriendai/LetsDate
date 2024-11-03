@@ -1,0 +1,168 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-[#F5F5F7] dark:bg-[#0A0A0C] font-sans;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-medium tracking-tight;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-[#0066CC] text-white px-6 py-3 rounded-2xl font-medium text-sm
+           hover:bg-[#0055AA] active:bg-[#004488]
+           transform active:scale-[0.98]
+           transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-[#0066CC] focus:ring-offset-2
+           disabled:opacity-50 disabled:cursor-not-allowed
+           shadow-sm hover:shadow-md
+           dark:shadow-none dark:hover:shadow-lg dark:hover:shadow-[#0066CC]/20;
+  }
+
+  .btn-secondary {
+    @apply bg-white/80 backdrop-blur-xl text-[#1D1D1F] px-6 py-3 rounded-2xl font-medium text-sm
+           border border-[#E5E5E7]/50
+           hover:bg-white hover:border-[#D1D1D6]
+           transform active:scale-[0.98]
+           transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-[#0066CC] focus:ring-offset-2
+           disabled:opacity-50 disabled:cursor-not-allowed
+           shadow-sm hover:shadow-md
+           dark:bg-[#1D1D1F]/80 dark:text-white dark:border-[#2D2D2F]/50
+           dark:hover:bg-[#1D1D1F] dark:hover:border-[#3D3D3F];
+  }
+
+  .input-primary {
+    @apply w-full pl-12 pr-4 py-3.5 rounded-2xl text-sm
+           border border-[#E5E5E7]/50 bg-white/80 backdrop-blur-xl
+           text-[#1D1D1F] placeholder-[#86868B]
+           hover:border-[#D1D1D6]
+           focus:border-[#0066CC] focus:ring-2 focus:ring-[#0066CC]/20
+           transition-all duration-200
+           shadow-sm
+           dark:bg-[#1D1D1F]/80 dark:border-[#2D2D2F]/50 dark:text-white
+           dark:placeholder-[#98989D] dark:hover:border-[#3D3D3F];
+  }
+}
+
+/* Leaflet Map Styles */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 1rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(229, 229, 231, 0.5);
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
+}
+
+.dark .leaflet-popup-content-wrapper {
+  background-color: rgba(29, 29, 31, 0.9);
+  border-color: rgba(45, 45, 47, 0.5);
+}
+
+.leaflet-popup-content {
+  margin: 0;
+}
+
+.leaflet-popup-close-button {
+  display: none;
+}
+
+.leaflet-popup-tip {
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
+}
+
+.dark .leaflet-popup-tip {
+  background-color: rgba(29, 29, 31, 0.9);
+}
+
+.leaflet-control-zoom {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border-radius: 0.75rem;
+  border: 1px solid rgba(229, 229, 231, 0.5);
+  overflow: hidden;
+}
+
+.dark .leaflet-control-zoom {
+  border-color: rgba(45, 45, 47, 0.5);
+}
+
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+  width: 2.5rem !important;
+  height: 2.5rem !important;
+  line-height: 2.5rem !important;
+  color: #1d1d1f !important;
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(8px);
+  transition: all 0.2s;
+}
+
+.dark .leaflet-control-zoom-in,
+.dark .leaflet-control-zoom-out {
+  background-color: rgba(29, 29, 31, 0.9) !important;
+  color: #98989d !important;
+}
+
+.leaflet-control-zoom-in:hover,
+.leaflet-control-zoom-out:hover {
+  background-color: white !important;
+  color: #0066cc !important;
+}
+
+.dark .leaflet-control-zoom-in:hover,
+.dark .leaflet-control-zoom-out:hover {
+  background-color: #1d1d1f !important;
+  color: #0066cc !important;
+}
+
+.leaflet-control-zoom-in {
+  border-bottom: 1px solid rgba(229, 229, 231, 0.5);
+}
+
+.dark .leaflet-control-zoom-in {
+  border-bottom-color: rgba(45, 45, 47, 0.5);
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(134, 134, 139, 0.6) transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-[#86868B]/60 rounded-full
+         dark:bg-[#98989D]/60;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  @apply bg-[#86868B]/80
+         dark:bg-[#98989D]/80;
+}
