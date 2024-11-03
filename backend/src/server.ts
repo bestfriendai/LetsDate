@@ -29,6 +29,8 @@ const corsOptions = {
   origin: process.env.NODE_ENV === 'production' 
     ? [
         /\.vercel\.app$/,  // Allow all vercel.app subdomains
+        /\.netlify\.app$/,  // Allow all netlify.app subdomains
+        /\.netlify\.com$/,  // Allow all netlify.com subdomains
         /localhost:[0-9]+$/  // Allow all localhost ports
       ]
     : true, // Allow all origins in development
@@ -50,10 +52,10 @@ app.use((req, res, next) => {
     'Content-Security-Policy',
     `
       default-src 'self';
-      script-src 'self' https://vercel.live/ https://vercel.com 'unsafe-inline';
-      connect-src 'self' https://vercel.live/ https://vercel.com *.pusher.com *.pusherapp.com;
-      img-src 'self' https://vercel.live/ https://vercel.com *.pusher.com/ data: blob:;
-      frame-src 'self' https://vercel.live/ https://vercel.com;
+      script-src 'self' 'unsafe-inline';
+      connect-src 'self' *.netlify.app *.netlify.com;
+      img-src 'self' data: blob:;
+      frame-src 'self';
       style-src 'self' 'unsafe-inline';
       font-src 'self';
     `.replace(/\s{2,}/g, ' ').trim()
@@ -64,7 +66,7 @@ app.use((req, res, next) => {
 app.use(express.json({ limit: '1mb' }));
 app.use(express.urlencoded({ extended: true, limit: '1mb' }));
 
-// Request timeout middleware - increased timeout for Vercel serverless
+// Request timeout middleware - increased timeout for Netlify serverless
 const timeoutMiddleware: SyncRequestHandler = (req, res, next) => {
   req.setTimeout(30000, () => {
     res.status(408).json({ error: 'Request timeout' });

@@ -3,7 +3,7 @@ import { Event } from '../types';
 
 const API_BASE_URL = process.env.NODE_ENV === 'development' 
   ? 'http://localhost:3000'
-  : (process.env.VITE_API_URL || 'https://backend-dateai.vercel.app');
+  : (process.env.VITE_API_URL || 'https://dateai-backend.netlify.app');
 
 const api = axios.create({
   baseURL: API_BASE_URL,
