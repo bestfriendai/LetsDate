@@ -1,22 +1,35 @@
 [build]
   command = "npm run build"
   publish = "dist"
+  functions = "functions"
 
 [[redirects]]
   from = "/api/*"
-  to = "https://backend-i7yqbirxs-bestfriendais-projects.vercel.app/api/:splat"
+  to = "/.netlify/functions/api-handler"
   status = 200
   force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
 
 [[headers]]
   for = "/*"
   [headers.values]
     Access-Control-Allow-Origin = "*"
     Access-Control-Allow-Methods = "GET, POST, PUT, DELETE, OPTIONS"
-    Access-Control-Allow-Headers = "Origin, X-Requested-With, Content-Type, Accept"
+    Access-Control-Allow-Headers = "Origin, X-Requested-With, Content-Type, Accept, Authorization"
     Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self' https://backend-i7yqbirxs-bestfriendais-projects.vercel.app; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self';"
     X-Content-Type-Options = "nosniff"
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=(self)"
+
+# Handle OPTIONS requests
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/cors-handler"
+  status = 200
+  conditions = {method = "OPTIONS"}
